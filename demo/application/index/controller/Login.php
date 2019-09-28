@@ -1,14 +1,14 @@
 <?php
 namespace app\index\controller;
 
-use joeStudio\login\LoginHelper;
+use joeStudio\login\Login as loginObject;
 
 class Login
 {
 
     public function __construct()
     {
-        $this->helperObject = new LoginHelper();
+        $this->loginObject = new LoginObject();
     }
 
     public function index()

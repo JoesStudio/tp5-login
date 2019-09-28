@@ -1,6 +1,6 @@
 {
     "name": "cenglingwen/demo",
     "require": {
-        "joe-studio/tp5-login": "^1.0"
+        "joe-studio/tp5-login": "v1.0.0"
     }
 }

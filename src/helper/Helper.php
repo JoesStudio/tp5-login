@@ -6,7 +6,7 @@
  * For:  登录帮助类
  */
 
-namespace joeStudio\login;
+namespace joeStudio\login\helper;
 
 
 class LoginHelper

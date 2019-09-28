@@ -653,3 +653,115 @@
 )
 [ info ] [ LOG ] INIT File
 [ error ] [0]致命错误: Class 'joeStudio\login\LoginHelper' not found[/Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/application/index/controller/Login.php:11]
+---------------------------------------------------------------
+[ 2019-09-28T22:18:33+08:00 ] 0.0.0.0 GET login.tp5.com/index/login/test
+[运行时间：0.046712s] [吞吐率：21.41req/s] [内存消耗：1,074.92kb] [文件加载：30]
+[ info ] [ LANG ] /Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'login',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'login.tp5.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'pgv_pvi=3864543232; pgv_si=s4695169024',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+[ error ] [0]致命错误: Class 'joeStudio\login\LoginHelper' not found[/Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/application/index/controller/Login.php:11]
+---------------------------------------------------------------
+[ 2019-09-28T22:18:34+08:00 ] 0.0.0.0 GET login.tp5.com/index/login/test
+[运行时间：0.029744s] [吞吐率：33.62req/s] [内存消耗：1,074.92kb] [文件加载：30]
+[ info ] [ LANG ] /Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'login',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'login.tp5.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'pgv_pvi=3864543232; pgv_si=s4695169024',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+[ error ] [0]致命错误: Class 'joeStudio\login\LoginHelper' not found[/Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/application/index/controller/Login.php:11]
+---------------------------------------------------------------
+[ 2019-09-28T22:22:02+08:00 ] 0.0.0.0 GET login.tp5.com/index/login/test
+[运行时间：0.041758s] [吞吐率：23.95req/s] [内存消耗：1,113.10kb] [文件加载：30]
+[ info ] [ LANG ] /Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'login',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'login.tp5.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'pgv_pvi=3864543232; pgv_si=s4695169024',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+[ error ] [64]Cannot declare class app\index\controller\Login because the name is already in use[/Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/application/index/controller/Login.php:6]
+---------------------------------------------------------------
+[ 2019-09-28T22:22:19+08:00 ] 0.0.0.0 GET login.tp5.com/index/login/test
+[运行时间：0.022949s] [吞吐率：43.57req/s] [内存消耗：985.80kb] [文件加载：26]
+[ info ] [ LANG ] /Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'login',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'login.tp5.com',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'pgv_pvi=3864543232; pgv_si=s4695169024',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Login->test[ /Users/cenglingwen/Projects/Tp5Projects/extends/tp5-login/demo/application/index/controller/Login.php ]
+[ info ] [ LOG ] INIT File

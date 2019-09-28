@@ -18,7 +18,8 @@
     "autoload": {
         "psr-4": {
             "think\\": "library/think",
-            "joeStudio\\login\\": "src/"
+            "joeStudio\\login\\": "src/",
+            "joeStudio\\login\\helper\\": "src/helper"
         }
     }
 }
