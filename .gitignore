@@ -1,2 +1,6 @@
 /vendor
 /composer.lock
+/application
+/public
+/runtime
+/thinkphp
