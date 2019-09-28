@@ -1,0 +1,16 @@
+{
+    "name": "JoeStudio/tp5-login",
+    "description": "基于TP5.024版本的管理后台登录功能",
+    "keywords": ["thinkphp","login","extension"],
+    "type": "tp5-extension",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "JoeStudio",
+            "email": "wstudio888@gmail.com",
+            "homepage": "https://"
+        }
+    ],
+    "require": {},
+    "minimum-stability": "dev"
+}
