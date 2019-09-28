@@ -7,4 +7,8 @@ class Index
     {
        return 89;
     }
+
+    public function login(){
+        return view();
+    }
 }
