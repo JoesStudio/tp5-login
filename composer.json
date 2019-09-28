@@ -1,5 +1,5 @@
 {
-    "name": "JoesStudio/tp5-login",
+    "name": "Joe-studio/tp5-login",
     "description": "基于TP5.024版本的管理后台登录功能",
     "keywords": ["thinkphp","login","extension"],
     "type": "tp5-extension",
