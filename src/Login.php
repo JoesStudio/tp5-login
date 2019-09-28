@@ -13,17 +13,17 @@ use think\Config;
 use think\crypt\Crypt;
 use think\Db;
 use think\Validate;
+use joeStudio\login\helper\LoginHelper;
 
 class Login
 {
     protected $config = [
-        'crypt' => 'dh2y',      //Crypt加密秘钥
+        'crypt' => 'wstudio',      //Crypt加密秘钥
         'auth_uid' => 'authId',      //用户认证识别号(必配)
-        'not_auth_module' => 'index', // 无需认证模块
-        'user_auth_gateway' => 'index/login', // 默认网关
-
-        //登录场景默认用户名登录  'username' 用户名登录 'phone' 手机号登录   'username|phone'用户名或者手机号登录
-        'scene'     =>   'username'
+        'not_auth_module' => 'login', // 无需认证模块
+        'user_auth_gateway' => 'login/index', // 默认网关
+        //登录场景默认用户名登录  'user_name' 用户名登录 'mobile' 手机号登录   'user_name|mobile'用户名或者手机号登录
+        'scene'     =>   'user_name'
     ];
 
     protected $model;          //登录模型
@@ -97,16 +97,16 @@ class Login
         if($result['status']==true){
 
             session($this->config['auth_uid'], $this->member['id']);
-            session("username", $this->member['username']);
+            session("user_name", $this->member['user_name']);
 
             //登录日志更新
-            $this->member['last_login'] = time();
+            $this->member['last_login_time'] = time();
             $this->member['login_ip'] = LoginHelper::get_client_ip(0,true);
             Db::name($this->model)->where('id',$this->member['id'])->update($this->member);
 
             //如果记住账号密码-vue.js复选框传的是true和false字符串
             if($data['remember']=='true'){
-                $member['username'] = $data['username'];
+                $member['user_name'] = $data['user_name'];
                 $member['password'] = $data['password'];
                 $member['remember'] = $data['remember'];
                 $remember = Crypt::encrypt(serialize($member),$this->config['crypt']);
@@ -128,7 +128,7 @@ class Login
      */
     public function logout(){
         session($this->config['auth_uid'], null);
-        session("username", null);
+        session("user_name", null);
         session(null);
         return ['status'=>true,'message'=>'成功退出！'];
     }
@@ -140,9 +140,10 @@ class Login
      */
     public function validate($data){
         $rule = [
-            ['username','require','登录账户必须！'], //默认情况下用正则进行验证
+            ['user_name','require','登录账户必须！'], //默认情况下用正则进行验证
             ['password','require|length:6,16','密码不能为空！|请输入6~16位有效字符'],
-            ['verify','require|captcha:login','验证码不能为空！|验证码错误！'],
+            ['mobile','require|regex:^[1][0-9]{10}$','密码不能为空！| 手机格式有误'],
+//            ['verify','require|captcha:login','验证码不能为空！|验证码错误！'],
         ];
         $validate = new Validate($rule);
         $result   = $validate->check($data);
@@ -167,7 +168,7 @@ class Login
         }
 
         //按照登录场景来区分
-        $map[$this->config['scene']] = $data['username'];
+        $map[$this->config['scene']] = $data['user_name'];
         $map['status'] = 1;
         $this->member = Db::name($this->model)->where($map)->find();
         if ( $this->member){
@@ -182,7 +183,7 @@ class Login
      * @return array
      */
     public function checkPass($password){
-        if( md5($password.$this->member['token'])!= $this->member['password']){
+        if( $this->encryption($password)!= $this->member['password']){
             return ['status'=>false,'message'=>'密码错误'];
         }
         return ['status'=>true,'message'=>'恭喜！密码正确'];
@@ -201,5 +202,99 @@ class Login
      */
     public function getError(){
         return $this->error;
+    }
+
+    public function register($data,\Closure  $function=null){
+
+        $result = $this->checkUsername($data);
+
+        if ($result['status']==false){
+            return $result;
+        }
+
+        $result = $this->checkPassword($data);
+
+        if ($result['status']==false){
+            return $result;
+        }
+
+        if($result['status']==true){
+
+            //注册用户
+            $this->member['user_name'] = $data['user_name'];
+            $this->member['password'] = $this->encryption($data['password']);
+            $this->member['mobile'] = $data['mobile'];
+            $this->member['login_ip'] = LoginHelper::get_client_ip(0,true);
+            $this->member['last_login_time'] = time();
+            $this->member['create_time'] = time();
+            $this->member['update_time'] = time();
+
+            $res = Db::name($this->model)->insert($this->member);
+
+            if($res){
+                $user_id = Db::name($this->model)->getLastInsID();
+
+                session($this->config['auth_uid'], $user_id);
+                session("user_name", $this->member['user_name']);
+
+                //如果记住账号密码-vue.js复选框传的是true和false字符串
+                if($data['remember']=='true'){
+                    $member['user_name'] = $data['user_name'];
+                    $member['password'] = $data['password'];
+                    $member['remember'] = $data['remember'];
+                    $remember = Crypt::encrypt(serialize($member),$this->config['crypt']);
+                    cookie('remember', $remember);//记住我
+                }else{
+                    cookie('remember', null);
+                }
+
+                if($function!=null){
+                    $function($this->member);
+                }
+
+                return [ 'status'=>1, 'msg'=>'注册成功', 'data'=>[]];
+            }
+
+
+
+        }
+    }
+
+    /**
+     * 检查用户名是否已经被使用
+     *
+     * @param $data
+     * @return array
+     */
+    public function checkUsername($data){
+        $validate = $this->validate($data);
+        if(!$validate){
+
+            return [ 'status'=>false, 'msg'=>$this->getError(), 'data'=>[]];
+        }
+
+        //按照登录场景来区分
+        $map[$this->config['scene']] = $data['user_name'];
+        $member = Db::name($this->model)->where($map)->find();
+        if ( $member){
+            return [ 'status'=>false, 'msg'=>'用户已经存在', 'data'=>[]];
+        }
+        return [ 'status'=>1, 'msg'=>'用户名可以使用', 'data'=>[]];
+    }
+
+    public function checkPassword($data){
+        if($data['password'] != $data['password2']){
+            return [ 'status'=>false, 'msg'=>'两次密码不一致', 'data'=>[]];
+        }
+
+        return [ 'status'=>true, 'msg'=>'密码一致', 'data'=>[]];
+    }
+
+    /**
+     * @param $password
+     * @return string
+     */
+    public function encryption($password){
+        return md5($password);
     }
 }
