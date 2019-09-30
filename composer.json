@@ -19,7 +19,12 @@
         "psr-4": {
             "think\\": "library/think",
             "joeStudio\\login\\": "src/",
-            "joeStudio\\login\\helper\\": "src/helper"
+            "joeStudio\\login\\logic\\": "src/logic/",
+            "joeStudio\\login\\helper\\": "src/helper/",
+            "joeStudio\\login\\model\\": "src/model/",
+            "joeStudio\\login\\validate\\": "src/validate/",
+            "joeStudio\\login\\view\\": "src/view/",
+            "joeStudio\\login\\behavior\\": "src/behavior/"
         }
     }
 }

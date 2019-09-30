@@ -80,3 +80,13 @@ $data = request()->post();
 return $login->sceneLogin($data,'username|email'); //用户名或邮箱登录
 ```
 
+判断是否登录态
+```
+在 tags.php 添加以下行为绑定
+return [
+    'action_begin'=> [
+        'joeStudio\\login\\behavior\\CheckLogin'
+    ]
+]
+```
+
