@@ -14,7 +14,7 @@
         "topthink/framework": "v5.0.24",
         "dh2y/think-crypt":"*"
     },
-    
+
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
