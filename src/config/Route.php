@@ -1,7 +1,6 @@
 <?php
 namespace joeStudio\login\config;
 
-
 class Route
 {
     public static $route = [
