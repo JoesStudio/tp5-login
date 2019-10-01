@@ -12,7 +12,8 @@
     ],
     "require": {
         "topthink/framework": "v5.0.24",
-        "dh2y/think-crypt":"*"
+        "dh2y/think-crypt":"*",
+        "topthink/think-captcha": "dev-master"
     },
 
     "minimum-stability": "dev",

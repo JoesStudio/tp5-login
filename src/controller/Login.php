@@ -21,7 +21,10 @@ class Login extends Controller
         $this->view = new View([
         // 模板路径
         'view_path'    => dirname(__FILE__) . '/../view/login/',
-    ]);
+
+        ],[
+            '__URL__'    =>  'http://hplus.static.com/'
+        ]);
 
         $this->loginObject = new loginObject(input('post.'));
         $this->helperObject = new LoginHelper();
@@ -80,5 +83,13 @@ class Login extends Controller
         <p>登录成功</p>
         <a href='{$url}'>退出登录</a>
        ";
+    }
+
+    public function captchaCheck(){
+        $verifycode = trim(input('post.verifycode'));
+        //验证验证码
+        if(!captcha_check($verifycode)){
+            exit(json_encode(array('code'=>1,'msg'=>'验证码错误')));
+        }
     }
 }

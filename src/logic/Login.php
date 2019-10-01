@@ -91,28 +91,33 @@ class Login
      * @return array
      */
     public function doLogin(\Closure  $function=null){
-        $result = $this->checkMember();
+
+        $result = $this->validate->scene('login')->batch()->check($this->input);
+
         if ($result==false){
+
             $this->output['status'] = false;
             $this->output['msg'] = $this->validate->getError();
             $this->output['data'] = [];
 
             return $this->output;
         }
-        $result = $this->checkPass($this->input['password']);
-        if($result['status']==true){
 
-            session($this->config['auth_uid'], $this->member['id']);
+        $this->member = $this->model->where([
+            'user_name' =>  $this->input['user_name']
+        ])->find();
+
+        if($this->member['password'] == $this->encryption($this->input['password'])){
+
+            session($this->config['auth_uid'], $this->member['admin_id']);
             session("user_name", $this->member['user_name']);
 
             //登录日志更新
             $data['last_login_time'] = time();
             $data['login_ip'] = LoginHelper::get_client_ip(0,true);
 
-
-
             $this->model->where([
-                'id'    =>  $this->member['id']
+                'admin_id'    =>  $this->member['admin_id']
             ])->update($data);
 
             //如果记住账号密码-vue.js复选框传的是true和false字符串
@@ -134,8 +139,8 @@ class Login
             $this->output['data'] = [$this->member];
         }else{
             $this->output['status'] = false;
-            $this->output['msg'] = '登录失败！';
-            $this->output['data'] = [];
+            $this->output['msg'] = ['password'=>'密码错误！'];
+            $this->output['data'] = [$result];
         }
 
         return $this->output;
@@ -159,16 +164,7 @@ class Login
      */
     public function checkMember(){
 
-        $result = $this->validate->scene('login')->check($this->input);
 
-        if ($result==false){
-
-            $this->output['status'] = false;
-            $this->output['msg'] = $this->validate->getError();
-            $this->output['data'] = [];
-
-            return $this->output;
-        }
 
         //按照登录场景来区分
         $map[$this->config['scene']] = $this->input['user_name'];
@@ -190,19 +186,6 @@ class Login
         return $this->output;
     }
 
-    /**
-     * 检查密码是否正确
-     * @param $password
-     * @return array
-     */
-    public function checkPass($password){
-        if( $this->encryption($password)!= $this->member['password']){
-            return ['status'=>false,'message'=>'密码错误'];
-        }
-        return ['status'=>true,'message'=>'恭喜！密码正确'];
-    }
-
-
     /**设置错误信息
      * @param $message
      */
@@ -219,7 +202,7 @@ class Login
 
     public function register(\Closure  $function = null){
 
-        $result = $this->validate->check($this->input);
+        $result = $this->validate->scene('register')->batch()->check($this->input);
 
         if ($result==false){
 
@@ -244,7 +227,6 @@ class Login
             $res = $this->model->save($this->member);
 
             if($res){
-                $user_id = $this->model->getLastInsID();
 
                 //如果记住账号密码-vue.js复选框传的是true和false字符串
                 if($this->input['remember']=='true'){

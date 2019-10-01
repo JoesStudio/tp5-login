@@ -13,6 +13,6 @@ class Admin extends Model
 
     protected $field = true;
 
-    protected $pk = 'id';
+    protected $pk = 'admin_id';
     protected $delete_time = "delete_time";
 }

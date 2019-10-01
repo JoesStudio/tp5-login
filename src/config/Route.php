@@ -5,6 +5,7 @@ class Route
 {
     public static $route = [
         //配置登录模块的路由**
+        '/'                 =>  ['\joeStudio\login\controller\Login@index',['method'=>'get']],
         '[login]'   =>  [
             'index'         =>  ['\joeStudio\login\controller\Login@index',['method'=>'get']],
             'register'      =>  ['\joeStudio\login\controller\Login@register',['method'=>'get']],

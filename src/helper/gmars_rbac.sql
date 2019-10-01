@@ -1,7 +1,7 @@
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `###admin`;
 CREATE TABLE `###admin` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `admin_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名',
   `password` varchar(64) NOT NULL DEFAULT '' COMMENT '用户密码',
   `mobile` varchar(20) NOT NULL DEFAULT '' COMMENT '手机号码',
