@@ -1,6 +1,4 @@
 <?php
-
-
 namespace joeStudio\login\config;
 
 
