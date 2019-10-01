@@ -103,6 +103,7 @@ class Login
             return $this->output;
         }
 
+
         $this->member = $this->model->where([
             'user_name' =>  $this->input['user_name']
         ])->find();
