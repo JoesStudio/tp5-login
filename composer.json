@@ -21,8 +21,10 @@
             "joeStudio\\login\\": "src/",
             "joeStudio\\login\\logic\\": "src/logic/",
             "joeStudio\\login\\helper\\": "src/helper/",
+            "joeStudio\\login\\controller\\": "src/controller/",
             "joeStudio\\login\\model\\": "src/model/",
             "joeStudio\\login\\validate\\": "src/validate/",
+            "joeStudio\\login\\config\\": "src/config/",
             "joeStudio\\login\\view\\": "src/view/",
             "joeStudio\\login\\behavior\\": "src/behavior/"
         }

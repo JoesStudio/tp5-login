@@ -6,7 +6,7 @@
  * For: 登录模块
  */
 
-namespace joeStudio\login;
+namespace joeStudio\login\logic;
 
 
 use joeStudio\login\model\Admin;
