@@ -1,6 +1,7 @@
 <?php
 namespace joeStudio\login\config;
 
+
 class Config
 {
     public static $config = [
